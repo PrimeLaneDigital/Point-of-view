@@ -79,4 +79,875 @@
       background:var(--gray2); border-right:1px solid rgba(255,214,0,0.1);
       display:flex; flex-direction:column; z-index:100;
     }
-... (file continues)
+    .sidebar-logo {
+      padding:1.5rem; border-bottom:1px solid rgba(255,214,0,0.1);
+      display:flex; flex-direction:column; gap:0.3rem;
+    }
+    .sidebar-logo .badge {
+      font-size:0.6rem; letter-spacing:0.15em; text-transform:uppercase;
+      color:var(--yellow); font-weight:700;
+    }
+    .sidebar-logo h2 { font-family:'Bebas Neue',sans-serif; font-size:1.2rem; letter-spacing:0.08em; }
+    .sidebar-logo p { font-size:0.7rem; color:var(--muted); }
+    .sidebar-nav { flex:1; padding:1rem 0; overflow-y:auto; }
+    .nav-section { padding:0.5rem 1rem; font-size:0.6rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--muted); margin-bottom:0.3rem; margin-top:0.8rem; }
+    .nav-item {
+      display:flex; align-items:center; gap:0.8rem;
+      padding:0.7rem 1rem; cursor:pointer;
+      font-size:0.82rem; font-weight:500; color:rgba(248,245,240,0.55);
+      transition:all 0.2s; border-left:3px solid transparent;
+      text-decoration:none;
+    }
+    .nav-item:hover { color:var(--white); background:rgba(255,214,0,0.05); }
+    .nav-item.active { color:var(--yellow); border-left-color:var(--yellow); background:rgba(255,214,0,0.08); }
+    .nav-icon { font-size:1rem; width:20px; text-align:center; }
+    .sidebar-footer {
+      padding:1rem; border-top:1px solid rgba(255,255,255,0.05);
+      display:flex; align-items:center; gap:0.8rem;
+    }
+    .sf-avatar { width:36px; height:36px; background:var(--yellow); border-radius:50%; display:flex; align-items:center; justify-content:center; font-family:'Bebas Neue',sans-serif; font-size:1rem; color:var(--black); flex-shrink:0; }
+    .sf-info { flex:1; min-width:0; }
+    .sf-name { font-size:0.8rem; font-weight:600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .sf-role { font-size:0.65rem; color:var(--muted); }
+    .sf-logout { cursor:pointer; color:var(--muted); font-size:0.9rem; transition:color 0.2s; }
+    .sf-logout:hover { color:var(--red); }
+
+    /* Main content */
+    .main { margin-left:240px; padding:2rem; min-height:100vh; }
+    .page-header { margin-bottom:2rem; }
+    .page-header h1 { font-family:'Bebas Neue',sans-serif; font-size:2rem; letter-spacing:0.05em; }
+    .page-header p { font-size:0.85rem; color:var(--muted); margin-top:0.3rem; }
+
+    /* ── TAB PAGES ── */
+    .tab-page { display:none; }
+    .tab-page.active { display:block; }
+
+    /* Stats row */
+    .stats-row { display:grid; grid-template-columns:repeat(4,1fr); gap:1rem; margin-bottom:2rem; }
+    .stat-card { background:var(--gray2); border:1px solid rgba(255,255,255,0.05); padding:1.2rem; }
+    .stat-label { font-size:0.68rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--muted); margin-bottom:0.5rem; }
+    .stat-value { font-family:'Bebas Neue',sans-serif; font-size:2rem; color:var(--yellow); line-height:1; }
+    .stat-sub { font-size:0.72rem; color:var(--muted); margin-top:0.3rem; }
+    .stat-up { color:var(--green); }
+    .stat-down { color:var(--red); }
+
+    /* Cards */
+    .card { background:var(--gray2); border:1px solid rgba(255,255,255,0.05); padding:1.5rem; margin-bottom:1.5rem; }
+    .card-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:1.2rem; }
+    .card-title { font-size:0.82rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; }
+    .card-action { font-size:0.72rem; color:var(--yellow); cursor:pointer; font-weight:600; }
+
+    /* Form elements */
+    .form-group { margin-bottom:1.2rem; }
+    .form-label { font-size:0.68rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--muted); margin-bottom:0.5rem; display:block; }
+    .form-input {
+      width:100%; padding:0.75rem 1rem;
+      background:var(--gray3); border:1px solid rgba(255,255,255,0.08);
+      color:var(--white); font-family:'DM Sans',sans-serif; font-size:0.88rem;
+      outline:none; transition:border-color 0.2s;
+    }
+    .form-input:focus { border-color:var(--yellow); }
+    .form-input::placeholder { color:var(--muted); }
+    textarea.form-input { min-height:90px; resize:vertical; }
+    .form-row { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
+
+    /* Buttons */
+    .btn { padding:0.65rem 1.4rem; font-family:'DM Sans',sans-serif; font-size:0.78rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; border:none; cursor:pointer; transition:all 0.2s; }
+    .btn-primary { background:var(--yellow); color:var(--black); }
+    .btn-primary:hover { background:var(--white); }
+    .btn-ghost { background:transparent; color:var(--white); border:1px solid rgba(255,255,255,0.15); }
+    .btn-ghost:hover { border-color:var(--yellow); color:var(--yellow); }
+    .btn-danger { background:transparent; color:var(--red); border:1px solid rgba(239,68,68,0.3); }
+    .btn-danger:hover { background:var(--red); color:var(--white); }
+    .btn-sm { padding:0.4rem 0.9rem; font-size:0.7rem; }
+
+    /* Product list */
+    .product-list { display:flex; flex-direction:column; gap:0.8rem; }
+    .product-row {
+      display:flex; align-items:center; gap:0.7rem;
+      background:var(--gray3); padding:0.8rem 1rem;
+      border:1px solid rgba(255,255,255,0.04);
+      flex-wrap:wrap;
+    }
+    .product-row-img { width:44px; height:44px; background:var(--gray2); flex-shrink:0; display:flex; align-items:center; justify-content:center; font-size:1.2rem; }
+    .product-row-info { flex:1; min-width:120px; }
+    .product-row-name { font-size:0.85rem; font-weight:600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:150px; }
+    .product-row-cat { font-size:0.68rem; color:var(--muted); }
+    .product-row-price { font-family:'Bebas Neue',sans-serif; font-size:1.1rem; color:var(--yellow); flex-shrink:0; }
+    .product-row-actions { display:flex; gap:0.5rem; flex-shrink:0; }
+    .badge { padding:0.18rem 0.5rem; font-size:0.58rem; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; white-space:nowrap; flex-shrink:0; }
+    .badge { padding:0.2rem 0.6rem; font-size:0.62rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; }
+    .badge-green { background:rgba(34,197,94,0.15); color:var(--green); }
+    .badge-yellow { background:rgba(255,214,0,0.15); color:var(--yellow); }
+    .badge-red { background:rgba(239,68,68,0.15); color:var(--red); }
+
+    /* Hours editor */
+    .hours-grid { display:flex; flex-direction:column; gap:0.8rem; }
+    .hours-row { display:flex; align-items:center; gap:0.6rem; flex-wrap:nowrap; width:100%; }
+    .hours-day { width:85px; font-size:0.8rem; font-weight:600; flex-shrink:0; }
+    .hours-input { padding:0.4rem 0.5rem; background:var(--gray3); border:1px solid rgba(255,255,255,0.08); color:var(--white); font-family:'DM Sans',sans-serif; font-size:0.78rem; outline:none; flex:1; min-width:0; max-width:100px; }
+    .hours-sep { color:var(--muted); font-size:0.78rem; flex-shrink:0; }
+    .toggle { width:38px; height:22px; background:var(--gray3); border:1px solid rgba(255,255,255,0.1); border-radius:11px; cursor:pointer; position:relative; transition:background 0.2s; flex-shrink:0; margin-left:auto; }
+    .toggle.on { background:var(--green); border-color:var(--green); }
+    .toggle::after { content:''; position:absolute; width:16px; height:16px; background:var(--white); border-radius:50%; top:2px; left:2px; transition:left 0.2s; }
+    .toggle.on::after { left:18px; }
+
+    /* Toast */
+    .toast {
+      position:fixed; bottom:2rem; right:2rem; z-index:999;
+      background:var(--gray2); border:1px solid rgba(255,214,0,0.3);
+      border-left:4px solid var(--yellow);
+      padding:0.9rem 1.4rem; font-size:0.85rem; font-weight:600;
+      transform:translateY(100px); opacity:0;
+      transition:all 0.3s ease; pointer-events:none;
+    }
+    .toast.show { transform:translateY(0); opacity:1; }
+
+    /* Quick actions */
+    .quick-actions { display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; margin-bottom:2rem; }
+    .qa-card {
+      background:var(--gray2); border:1px solid rgba(255,255,255,0.05);
+      padding:1.2rem; cursor:pointer; transition:all 0.2s;
+      border-top:3px solid transparent;
+    }
+    .qa-card:hover { border-top-color:var(--yellow); background:rgba(255,214,0,0.04); }
+    .qa-icon { font-size:1.5rem; margin-bottom:0.5rem; }
+    .qa-title { font-size:0.85rem; font-weight:700; margin-bottom:0.2rem; }
+    .qa-desc { font-size:0.72rem; color:var(--muted); line-height:1.4; }
+
+    /* Activity feed */
+    .activity-item { display:flex; gap:1rem; padding:0.8rem 0; border-bottom:1px solid rgba(255,255,255,0.04); }
+    .activity-item:last-child { border-bottom:none; }
+    .activity-dot { width:8px; height:8px; border-radius:50%; background:var(--yellow); flex-shrink:0; margin-top:5px; }
+    .activity-text { font-size:0.82rem; line-height:1.5; }
+    .activity-time { font-size:0.7rem; color:var(--muted); margin-top:0.15rem; }
+
+    /* Delivery table */
+    .delivery-table { width:100%; border-collapse:collapse; table-layout:fixed; }
+    .delivery-table th { font-size:0.65rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); padding:0.6rem 0.6rem; text-align:left; border-bottom:1px solid rgba(255,255,255,0.06); word-break:break-word; }
+    .delivery-table td { padding:0.6rem 0.6rem; font-size:0.82rem; border-bottom:1px solid rgba(255,255,255,0.04); word-break:break-word; vertical-align:top; }
+    .delivery-table tr:hover td { background:rgba(255,214,0,0.03); }
+    .delivery-table th:first-child, .delivery-table td:first-child { width:40%; }
+    .delivery-table th:nth-child(2), .delivery-table td:nth-child(2) { width:25%; }
+    .delivery-table th:nth-child(3), .delivery-table td:nth-child(3) { width:35%; }
+
+    /* RESPONSIVE */
+    @media(max-width:900px){
+      .sidebar { width:200px; }
+      .main { margin-left:200px; padding:1.2rem; }
+      .stats-row { grid-template-columns:1fr 1fr; }
+      .quick-actions { grid-template-columns:1fr 1fr; }
+      .form-row { grid-template-columns:1fr; }
+      .product-row-name { max-width:120px; }
+    }
+    @media(max-width:640px){
+      .sidebar { display:none; }
+      .main { margin-left:0; padding:1rem; }
+      .stats-row { grid-template-columns:1fr 1fr; }
+      .quick-actions { grid-template-columns:1fr; }
+      .product-row { gap:0.5rem; padding:0.7rem 0.8rem; }
+      .product-row-img { width:36px; height:36px; font-size:1rem; }
+      .product-row-name { max-width:100px; font-size:0.78rem; }
+      .product-row-price { font-size:1rem; }
+      .btn.btn-sm { padding:0.35rem 0.65rem; font-size:0.65rem; }
+      .hours-day { width:72px; font-size:0.75rem; }
+      .hours-input { font-size:0.72rem; padding:0.35rem 0.4rem; }
+      .card { padding:1rem; }
+    }
+  
+    /* ── BACK BUTTON ── */
+    .back-btn {
+      display:inline-flex; align-items:center; gap:0.5rem;
+      background:transparent; border:1.5px solid rgba(255,214,0,0.3);
+      color:var(--yellow); padding:0.45rem 1rem;
+      font-family:'DM Sans',sans-serif; font-size:0.75rem;
+      font-weight:700; letter-spacing:0.08em; text-transform:uppercase;
+      cursor:pointer; transition:all 0.2s; margin-bottom:1.5rem;
+      display:flex; width:fit-content;
+    }
+    .back-btn:hover { background:var(--yellow); color:var(--black); }
+    .back-btn::before { content:'←'; font-size:1rem; }
+</style>
+</head>
+<body>
+
+<!-- ══════════════ LOGIN ══════════════ -->
+<div class="login-screen" id="loginScreen">
+  <div class="login-bg"></div>
+  <div class="login-card">
+    <div class="login-logo">
+      <div class="login-logo-badge">Primelane Digital</div>
+      <h1>Client Portal</h1>
+      <p>Manage your website · Point Of View</p>
+    </div>
+    <div class="login-divider"></div>
+    <div class="login-error" id="loginError">Incorrect username or password. Please try again.</div>
+    <label class="login-label">Username</label>
+    <input type="text" class="login-input" id="loginUser" placeholder="Enter your username"/>
+    <label class="login-label">Password</label>
+    <input type="password" class="login-input" id="loginPass" placeholder="Enter your password" onkeydown="if(event.key==='Enter')doLogin()"/>
+    <button class="login-btn" onclick="doLogin()">Sign In to Portal</button>
+    <div class="login-footer">
+      Powered by Primelane Digital · 069 569 6742
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ PORTAL ══════════════ -->
+<div class="portal" id="portal">
+
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+    <div class="sidebar-logo">
+      <span class="badge">Primelane Digital</span>
+      <h2>POV Portal</h2>
+      <p>Point Of View · Soweto</p>
+    </div>
+    <nav class="sidebar-nav">
+      <div class="nav-section">Overview</div>
+      <a class="nav-item active" onclick="showTab('dashboard',this)">
+        <span class="nav-icon">📊</span> Dashboard
+      </a>
+      <div class="nav-section">Website</div>
+      <a class="nav-item" onclick="showTab('store-info',this)">
+        <span class="nav-icon">🏪</span> Store Info
+      </a>
+      <a class="nav-item" onclick="showTab('products',this)">
+        <span class="nav-icon">👕</span> Products
+      </a>
+      <a class="nav-item" onclick="showTab('hours',this)">
+        <span class="nav-icon">🕐</span> Trading Hours
+      </a>
+      <a class="nav-item" onclick="showTab('delivery',this)">
+        <span class="nav-icon">🚚</span> Delivery Fees
+      </a>
+      <a class="nav-item" onclick="showTab('lookbook',this)">
+        <span class="nav-icon">📸</span> Lookbook
+      </a>
+      <div class="nav-section">Account</div>
+      <a class="nav-item" onclick="showTab('request',this)">
+        <span class="nav-icon">📝</span> Request Changes
+      </a>
+      <a class="nav-item" onclick="showTab('billing',this)">
+        <span class="nav-icon">💳</span> Billing
+      </a>
+    </nav>
+    <div class="sidebar-footer">
+      <div class="sf-avatar">P</div>
+      <div class="sf-info">
+        <div class="sf-name">Point Of View</div>
+        <div class="sf-role">Standard Plan · R200/mo</div>
+      </div>
+      <span class="sf-logout" onclick="doLogout()" title="Sign out">⎋</span>
+    </div>
+  </div>
+
+  <!-- MAIN -->
+  <div class="main">
+
+    <!-- ── DASHBOARD ── -->
+    <div class="tab-page active" id="tab-dashboard">
+      <div class="page-header">
+        <h1>Dashboard</h1>
+        <p>Welcome back, Point Of View. Here's your website overview.</p>
+      </div>
+
+      <div class="stats-row">
+        <div class="stat-card">
+          <div class="stat-label">Website Status</div>
+          <div class="stat-value" style="color:var(--green);font-size:1.1rem;margin-top:0.3rem;">LIVE</div>
+          <div class="stat-sub">Online since launch</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Products Listed</div>
+          <div class="stat-value">10</div>
+          <div class="stat-sub">Across all categories</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Monthly Plan</div>
+          <div class="stat-value" style="font-size:1.5rem;">R200</div>
+          <div class="stat-sub">Standard Package</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Next Payment</div>
+          <div class="stat-value" id="nextPayDate" style="font-size:1.3rem;">28</div>
+          <div class="stat-sub" id="nextPaySub">Due on the 28th</div>
+        </div>
+      </div>
+
+      <div class="quick-actions">
+        <div class="qa-card" onclick="showTab('store-info',null)">
+          <div class="qa-icon">🏪</div>
+          <div class="qa-title">Update Store Info</div>
+          <div class="qa-desc">Change your address, phone number, social media links</div>
+        </div>
+        <div class="qa-card" onclick="showTab('products',null)">
+          <div class="qa-icon">👕</div>
+          <div class="qa-title">Manage Products</div>
+          <div class="qa-desc">Update prices, add new items, manage your collection</div>
+        </div>
+        <div class="qa-card" onclick="showTab('hours',null)">
+          <div class="qa-icon">🕐</div>
+          <div class="qa-title">Trading Hours</div>
+          <div class="qa-desc">Update your opening and closing times</div>
+        </div>
+        <div class="qa-card" onclick="showTab('delivery',null)">
+          <div class="qa-icon">🚚</div>
+          <div class="qa-title">Delivery Fees</div>
+          <div class="qa-desc">Set your delivery prices per zone</div>
+        </div>
+        <div class="qa-card" onclick="showTab('lookbook',null)">
+          <div class="qa-icon">📸</div>
+          <div class="qa-title">Lookbook</div>
+          <div class="qa-desc">View your 13 lookbook photos currently live</div>
+        </div>
+        <div class="qa-card" onclick="showTab('request',null)">
+          <div class="qa-icon">📝</div>
+          <div class="qa-title">Request a Change</div>
+          <div class="qa-desc">Send Primelane Digital a custom change request</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">Recent Activity</span>
+        </div>
+        <div class="activity-item"><div class="activity-dot"></div><div><div class="activity-text">Website successfully launched and published live</div><div class="activity-time">Today</div></div></div>
+        <div class="activity-item"><div class="activity-dot"></div><div><div class="activity-text">13 lookbook photos added to the website</div><div class="activity-time">Today</div></div></div>
+        <div class="activity-item"><div class="activity-dot"></div><div><div class="activity-text">Product sliders added — Retro Blossom, Cap, Shades, Tote Bag, Beanie</div><div class="activity-time">Today</div></div></div>
+        <div class="activity-item"><div class="activity-dot"></div><div><div class="activity-text">Client agreement signed — Standard Package R200/month</div><div class="activity-time">This week</div></div></div>
+        <div class="activity-item"><div class="activity-dot"></div><div><div class="activity-text">Google Business profile setup initiated</div><div class="activity-time">Pending</div></div></div>
+      </div>
+    </div>
+
+    <!-- ── STORE INFO ── -->
+    <div class="tab-page" id="tab-store-info">
+      <button class="back-btn" onclick="showTab('dashboard',null)">Back to Dashboard</button>
+      <div class="page-header">
+        <h1>Store Information</h1>
+        <p>Update your store details. Send to Primelane Digital to apply changes.</p>
+      </div>
+      <div class="card">
+        <div class="card-header"><span class="card-title">Basic Details</span></div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Store Name</label>
+            <input type="text" class="form-input" value="Point Of View"/>
+          </div>
+          <div class="form-group">
+            <label class="form-label">WhatsApp Number</label>
+            <input type="text" class="form-input" value="063 931 9961"/>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Physical Address</label>
+          <input type="text" class="form-input" value="1649 Umtwalumi Street, Soweto, Johannesburg"/>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Instagram Handle</label>
+            <input type="text" class="form-input" value="@povproduction.za"/>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Facebook Page</label>
+            <input type="text" class="form-input" value="Point Of View"/>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Brand Story (shown on About section)</label>
+          <textarea class="form-input">Point Of View is a clothing brand built from nothing — with faith, love and vision. Growing into a luxury streetwear movement that represents ambition, purpose and perspective.</textarea>
+        </div>
+        <button class="btn btn-primary" onclick="sendRequest('Store information update')">Send Update Request</button>
+      </div>
+    </div>
+
+    <!-- ── PRODUCTS ── -->
+    <div class="tab-page" id="tab-products">
+      <button class="back-btn" onclick="showTab('dashboard',null)">Back to Dashboard</button>
+      <div class="page-header">
+        <h1>Products</h1>
+        <p>Your current product listing. Request price changes or new products below.</p>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">Current Products (10)</span>
+          <span class="card-action" onclick="showTab('request',null)">+ Request New Product</span>
+        </div>
+        <div class="product-list">
+          <div class="product-row">
+            <div class="product-row-img">👕</div>
+            <div class="product-row-info"><div class="product-row-name">Retro Blossom T-Shirt</div><div class="product-row-cat">T-Shirts · White & Black</div></div>
+            <span class="badge badge-green">Live</span>
+            <div class="product-row-price">R250</div>
+            <div class="product-row-actions">
+              <button class="btn btn-ghost btn-sm" onclick="editPrice(this,'Retro Blossom T-Shirt')">Edit Price</button>
+            </div>
+          </div>
+          <div class="product-row">
+            <div class="product-row-img">🧥</div>
+            <div class="product-row-info"><div class="product-row-name">Cropped Vest</div><div class="product-row-cat">Tops · White & Black</div></div>
+            <span class="badge badge-green">Live</span>
+            <div class="product-row-price">R200</div>
+            <div class="product-row-actions"><button class="btn btn-ghost btn-sm" onclick="editPrice(this,'Cropped Vest')">Edit Price</button></div>
+          </div>
+          <div class="product-row">
+            <div class="product-row-img">👚</div>
+            <div class="product-row-info"><div class="product-row-name">Crop Top</div><div class="product-row-cat">Tops</div></div>
+            <span class="badge badge-yellow">Photo Pending</span>
+            <div class="product-row-price">R200</div>
+            <div class="product-row-actions"><button class="btn btn-ghost btn-sm" onclick="editPrice(this,'Crop Top')">Edit Price</button></div>
+          </div>
+          <div class="product-row">
+            <div class="product-row-img">👕</div>
+            <div class="product-row-info"><div class="product-row-name">Oversized T-Shirt</div><div class="product-row-cat">T-Shirts</div></div>
+            <span class="badge badge-yellow">Photo Pending</span>
+            <div class="product-row-price">R300</div>
+            <div class="product-row-actions"><button class="btn btn-ghost btn-sm" onclick="editPrice(this,'Oversized T-Shirt')">Edit Price</button></div>
+          </div>
+          <div class="product-row">
+            <div class="product-row-img">🧶</div>
+            <div class="product-row-info"><div class="product-row-name">Urban Bloomed Sweater</div><div class="product-row-cat">Sweaters · Black</div></div>
+            <span class="badge badge-green">Live</span>
+            <div class="product-row-price">R350</div>
+            <div class="product-row-actions"><button class="btn btn-ghost btn-sm" onclick="editPrice(this,'Urban Bloomed Sweater')">Edit Price</button></div>
+          </div>
+          <div class="product-row">
+            <div class="product-row-img">🧥</div>
+            <div class="product-row-info"><div class="product-row-name">Classic Hoodie</div><div class="product-row-cat">Hoodies · Pink</div></div>
+            <span class="badge badge-green">Live</span>
+            <div class="product-row-price">R350</div>
+            <div class="product-row-actions"><button class="btn btn-ghost btn-sm" onclick="editPrice(this,'Classic Hoodie')">Edit Price</button></div>
+          </div>
+          <div class="product-row">
+            <div class="product-row-img">🧥</div>
+            <div class="product-row-info"><div class="product-row-name">Statement Hoodie</div><div class="product-row-cat">Hoodies · White</div></div>
+            <span class="badge badge-green">Live</span>
+            <div class="product-row-price">R380</div>
+            <div class="product-row-actions"><button class="btn btn-ghost btn-sm" onclick="editPrice(this,'Statement Hoodie')">Edit Price</button></div>
+          </div>
+          <div class="product-row">
+            <div class="product-row-img">👔</div>
+            <div class="product-row-info"><div class="product-row-name">Mafia Tracksuit</div><div class="product-row-cat">Tracksuits</div></div>
+            <span class="badge badge-yellow">Photo Pending</span>
+            <div class="product-row-price">R1,200</div>
+            <div class="product-row-actions"><button class="btn btn-ghost btn-sm" onclick="editPrice(this,'Mafia Tracksuit')">Edit Price</button></div>
+          </div>
+          <div class="product-row">
+            <div class="product-row-img">✨</div>
+            <div class="product-row-info"><div class="product-row-name">Meta Piece</div><div class="product-row-cat">Premium Set</div></div>
+            <span class="badge badge-green">Live</span>
+            <div class="product-row-price">R450</div>
+            <div class="product-row-actions"><button class="btn btn-ghost btn-sm" onclick="editPrice(this,'Meta Piece')">Edit Price</button></div>
+          </div>
+          <div class="product-row">
+            <div class="product-row-img">🧢</div>
+            <div class="product-row-info"><div class="product-row-name">POV 5-Panel Cap</div><div class="product-row-cat">Accessories · White & Black</div></div>
+            <span class="badge badge-green">Live</span>
+            <div class="product-row-price">R100</div>
+            <div class="product-row-actions"><button class="btn btn-ghost btn-sm" onclick="editPrice(this,'POV Cap')">Edit Price</button></div>
+          </div>
+          <div class="product-row">
+            <div class="product-row-img">🕶️</div>
+            <div class="product-row-info"><div class="product-row-name">POV Shades</div><div class="product-row-cat">Accessories · White & Black</div></div>
+            <span class="badge badge-green">Live</span>
+            <div class="product-row-price">R150</div>
+            <div class="product-row-actions"><button class="btn btn-ghost btn-sm" onclick="editPrice(this,'POV Shades')">Edit Price</button></div>
+          </div>
+          <div class="product-row">
+            <div class="product-row-img">🎒</div>
+            <div class="product-row-info"><div class="product-row-name">POV Tote Bag</div><div class="product-row-cat">Accessories · Black & Cream</div></div>
+            <span class="badge badge-green">Live</span>
+            <div class="product-row-price">R100</div>
+            <div class="product-row-actions"><button class="btn btn-ghost btn-sm" onclick="editPrice(this,'Tote Bag')">Edit Price</button></div>
+          </div>
+          <div class="product-row">
+            <div class="product-row-img">🎿</div>
+            <div class="product-row-info"><div class="product-row-name">POV Beanie</div><div class="product-row-cat">Accessories · 4 Colours</div></div>
+            <span class="badge badge-green">Live</span>
+            <div class="product-row-price">R120</div>
+            <div class="product-row-actions"><button class="btn btn-ghost btn-sm" onclick="editPrice(this,'POV Beanie')">Edit Price</button></div>
+          </div>
+          <div class="product-row">
+            <div class="product-row-img">🌸</div>
+            <div class="product-row-info"><div class="product-row-name">Classic Sweater</div><div class="product-row-cat">Sweaters</div></div>
+            <span class="badge badge-yellow">Photo Pending</span>
+            <div class="product-row-price">R300</div>
+            <div class="product-row-actions"><button class="btn btn-ghost btn-sm" onclick="editPrice(this,'Classic Sweater')">Edit Price</button></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── TRADING HOURS ── -->
+    <div class="tab-page" id="tab-hours">
+      <button class="back-btn" onclick="showTab('dashboard',null)">Back to Dashboard</button>
+      <div class="page-header">
+        <h1>Trading Hours</h1>
+        <p>Update your opening times. Click Save to send to Primelane Digital.</p>
+      </div>
+      <div class="card">
+        <div class="card-header"><span class="card-title">Weekly Schedule</span></div>
+        <div class="hours-grid">
+          <div class="hours-row">
+            <div class="hours-day">Monday</div>
+            <input type="time" class="hours-input" value="12:00"/>
+            <span class="hours-sep">to</span>
+            <input type="time" class="hours-input" value="17:00"/>
+            <div class="toggle on" onclick="this.classList.toggle('on')"></div>
+          </div>
+          <div class="hours-row">
+            <div class="hours-day">Tuesday</div>
+            <input type="time" class="hours-input" value="12:00"/>
+            <span class="hours-sep">to</span>
+            <input type="time" class="hours-input" value="17:00"/>
+            <div class="toggle on" onclick="this.classList.toggle('on')"></div>
+          </div>
+          <div class="hours-row">
+            <div class="hours-day">Wednesday</div>
+            <input type="time" class="hours-input" value="12:00"/>
+            <span class="hours-sep">to</span>
+            <input type="time" class="hours-input" value="17:00"/>
+            <div class="toggle on" onclick="this.classList.toggle('on')"></div>
+          </div>
+          <div class="hours-row">
+            <div class="hours-day">Thursday</div>
+            <input type="time" class="hours-input" value="12:00"/>
+            <span class="hours-sep">to</span>
+            <input type="time" class="hours-input" value="17:00"/>
+            <div class="toggle on" onclick="this.classList.toggle('on')"></div>
+          </div>
+          <div class="hours-row">
+            <div class="hours-day">Friday</div>
+            <input type="time" class="hours-input" value="12:00"/>
+            <span class="hours-sep">to</span>
+            <input type="time" class="hours-input" value="17:00"/>
+            <div class="toggle on" onclick="this.classList.toggle('on')"></div>
+          </div>
+          <div class="hours-row">
+            <div class="hours-day">Saturday</div>
+            <input type="time" class="hours-input" value="12:00"/>
+            <span class="hours-sep">to</span>
+            <input type="time" class="hours-input" value="17:00"/>
+            <div class="toggle on" onclick="this.classList.toggle('on')"></div>
+          </div>
+          <div class="hours-row">
+            <div class="hours-day">Sunday</div>
+            <input type="time" class="hours-input" value="12:00"/>
+            <span class="hours-sep">to</span>
+            <input type="time" class="hours-input" value="17:00"/>
+            <div class="toggle on" onclick="this.classList.toggle('on')"></div>
+          </div>
+        </div>
+        <br/>
+        <button class="btn btn-primary" onclick="sendRequest('Trading hours update')">Save & Send to Primelane Digital</button>
+      </div>
+    </div>
+
+    <!-- ── DELIVERY ── -->
+    <div class="tab-page" id="tab-delivery">
+      <button class="back-btn" onclick="showTab('dashboard',null)">Back to Dashboard</button>
+      <div class="page-header">
+        <h1>Delivery Fees</h1>
+        <p>Set your delivery prices per zone. Changes go live after Primelane Digital approves.</p>
+      </div>
+      <div class="card">
+        <div class="card-header"><span class="card-title">Delivery Zones</span></div>
+        <table class="delivery-table">
+          <tr><th>Zone</th><th>Current Fee</th><th>New Fee</th><th>Estimated Time</th></tr>
+          <tr>
+            <td>Soweto &amp; surrounds</td>
+            <td style="color:var(--yellow);font-weight:600;">R60</td>
+            <td><input type="text" class="hours-input" value="R60" style="width:80px;"/></td>
+            <td>1–2 days</td>
+          </tr>
+          <tr>
+            <td>Johannesburg &amp; Gauteng</td>
+            <td style="color:var(--yellow);font-weight:600;">R80</td>
+            <td><input type="text" class="hours-input" value="R80" style="width:80px;"/></td>
+            <td>1–3 days</td>
+          </tr>
+          <tr>
+            <td>Cape Town / Western Cape</td>
+            <td style="color:var(--yellow);font-weight:600;">R120</td>
+            <td><input type="text" class="hours-input" value="R120" style="width:80px;"/></td>
+            <td>3–5 days</td>
+          </tr>
+          <tr>
+            <td>Durban / KZN</td>
+            <td style="color:var(--yellow);font-weight:600;">R110</td>
+            <td><input type="text" class="hours-input" value="R110" style="width:80px;"/></td>
+            <td>3–5 days</td>
+          </tr>
+          <tr>
+            <td>All other provinces</td>
+            <td style="color:var(--yellow);font-weight:600;">R130</td>
+            <td><input type="text" class="hours-input" value="R130" style="width:80px;"/></td>
+            <td>3–5 days</td>
+          </tr>
+        </table>
+        <br/>
+        <button class="btn btn-primary" onclick="sendRequest('Delivery fees update')">Send Update Request</button>
+      </div>
+    </div>
+
+    <!-- ── LOOKBOOK ── -->
+    <div class="tab-page" id="tab-lookbook">
+      <button class="back-btn" onclick="showTab('dashboard',null)">Back to Dashboard</button>
+      <div class="page-header">
+        <h1>Lookbook</h1>
+        <p>Your 13 lookbook photos currently live on the website.</p>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">Live Photos (13)</span>
+          <span class="card-action" onclick="showTab('request',null)">+ Request New Photos</span>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:0.8rem;">
+          <div style="aspect-ratio:3/4;background:var(--gray3);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:0.4rem;border:1px solid rgba(255,255,255,0.05);">
+            <span style="font-size:1.5rem;">📸</span>
+            <span style="font-size:0.65rem;color:var(--muted);letter-spacing:0.1em;">The Statement</span>
+          </div>
+          <div style="aspect-ratio:3/4;background:var(--gray3);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:0.4rem;border:1px solid rgba(255,255,255,0.05);">
+            <span style="font-size:1.5rem;">📸</span>
+            <span style="font-size:0.65rem;color:var(--muted);letter-spacing:0.1em;">Street Heat</span>
+          </div>
+          <div style="aspect-ratio:3/4;background:var(--gray3);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:0.4rem;border:1px solid rgba(255,255,255,0.05);">
+            <span style="font-size:1.5rem;">📸</span>
+            <span style="font-size:0.65rem;color:var(--muted);letter-spacing:0.1em;">Soweto Drip</span>
+          </div>
+          <div style="aspect-ratio:3/4;background:var(--gray3);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:0.4rem;border:1px solid rgba(255,255,255,0.05);">
+            <span style="font-size:1.5rem;">📸</span>
+            <span style="font-size:0.65rem;color:var(--muted);letter-spacing:0.1em;">The Culture</span>
+          </div>
+          <div style="aspect-ratio:3/4;background:var(--gray3);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:0.4rem;border:1px solid rgba(255,255,255,0.05);">
+            <span style="font-size:1.5rem;">📸</span>
+            <span style="font-size:0.65rem;color:var(--muted);letter-spacing:0.1em;">Retro Blossom</span>
+          </div>
+          <div style="aspect-ratio:3/4;background:var(--gray3);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:0.4rem;border:1px solid rgba(255,255,255,0.05);">
+            <span style="font-size:1.5rem;">📸</span>
+            <span style="font-size:0.65rem;color:var(--muted);letter-spacing:0.1em;">Mafia Style</span>
+          </div>
+          <div style="aspect-ratio:3/4;background:var(--gray3);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:0.4rem;border:1px solid rgba(255,255,255,0.05);">
+            <span style="font-size:1.5rem;">📸</span>
+            <span style="font-size:0.65rem;color:var(--muted);letter-spacing:0.1em;">Back Print</span>
+          </div>
+          <div style="aspect-ratio:3/4;background:var(--gray3);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:0.4rem;border:1px solid rgba(255,255,255,0.05);">
+            <span style="font-size:1.5rem;">📸</span>
+            <span style="font-size:0.65rem;color:var(--muted);letter-spacing:0.1em;">Pink Season</span>
+          </div>
+          <div style="aspect-ratio:3/4;background:var(--gray3);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:0.4rem;border:1px solid rgba(255,255,255,0.05);">
+            <span style="font-size:1.5rem;">📸</span>
+            <span style="font-size:0.65rem;color:var(--muted);letter-spacing:0.1em;">Golden Hour</span>
+          </div>
+          <div style="aspect-ratio:3/4;background:var(--gray3);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:0.4rem;border:1px solid rgba(255,255,255,0.05);">
+            <span style="font-size:1.5rem;">📸</span>
+            <span style="font-size:0.65rem;color:var(--muted);letter-spacing:0.1em;">Street Ready</span>
+          </div>
+          <div style="aspect-ratio:3/4;background:var(--gray3);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:0.4rem;border:1px solid rgba(255,255,255,0.05);">
+            <span style="font-size:1.5rem;">📸</span>
+            <span style="font-size:0.65rem;color:var(--muted);letter-spacing:0.1em;">Bucket Hat</span>
+          </div>
+          <div style="aspect-ratio:3/4;background:var(--gray3);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:0.4rem;border:1px solid rgba(255,255,255,0.05);">
+            <span style="font-size:1.5rem;">📸</span>
+            <span style="font-size:0.65rem;color:var(--muted);letter-spacing:0.1em;">Night Shoot</span>
+          </div>
+          <div style="aspect-ratio:3/4;background:var(--gray3);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:0.4rem;border:1px solid rgba(255,255,255,0.05);">
+            <span style="font-size:1.5rem;">📸</span>
+            <span style="font-size:0.65rem;color:var(--muted);letter-spacing:0.1em;">Red Heat</span>
+          </div>
+        </div>
+        <br/>
+        <p style="font-size:0.78rem;color:var(--muted);">To replace or add new lookbook photos, send them to Primelane Digital on WhatsApp: <strong style="color:var(--yellow);">069 569 6742</strong></p>
+      </div>
+    </div>
+
+    <!-- ── REQUEST CHANGES ── -->
+    <div class="tab-page" id="tab-request">
+      <button class="back-btn" onclick="showTab('dashboard',null)">Back to Dashboard</button>
+      <div class="page-header">
+        <h1>Request Changes</h1>
+        <p>Send a change request to Primelane Digital. We respond within 24 hours.</p>
+      </div>
+      <div class="card">
+        <div class="card-header"><span class="card-title">New Change Request</span></div>
+        <div class="form-group">
+          <label class="form-label">Type of Change</label>
+          <select class="form-input" id="changeType">
+            <option>Add a new product</option>
+            <option>Update a product photo</option>
+            <option>Update a price</option>
+            <option>Change store information</option>
+            <option>Add lookbook photos</option>
+            <option>Update trading hours</option>
+            <option>Design change</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Describe the change</label>
+          <textarea class="form-input" id="changeDesc" placeholder="Explain exactly what you want changed on your website..."></textarea>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Priority</label>
+          <select class="form-input" id="changePriority">
+            <option>Normal — within 48 hours</option>
+            <option>Urgent — within 24 hours</option>
+          </select>
+        </div>
+        <button class="btn btn-primary" onclick="submitChangeRequest()">Send Change Request via WhatsApp</button>
+      </div>
+
+      <div class="card">
+        <div class="card-header"><span class="card-title">Previous Requests</span></div>
+        <div class="activity-item"><div class="activity-dot" style="background:var(--green);"></div><div><div class="activity-text">Add 13 lookbook photos</div><div class="activity-time">Completed · Today</div></div></div>
+        <div class="activity-item"><div class="activity-dot" style="background:var(--green);"></div><div><div class="activity-text">Remove marquee scrolling text and all emojis</div><div class="activity-time">Completed · Today</div></div></div>
+        <div class="activity-item"><div class="activity-dot" style="background:var(--green);"></div><div><div class="activity-text">Add hero group photo background</div><div class="activity-time">Completed · This week</div></div></div>
+        <div class="activity-item"><div class="activity-dot" style="background:var(--yellow);"></div><div><div class="activity-text">Google Business Profile setup</div><div class="activity-time">In Progress</div></div></div>
+      </div>
+    </div>
+
+    <!-- ── BILLING ── -->
+    <div class="tab-page" id="tab-billing">
+      <button class="back-btn" onclick="showTab('dashboard',null)">Back to Dashboard</button>
+      <div class="page-header">
+        <h1>Billing</h1>
+        <p>Your payment history and upcoming invoices.</p>
+      </div>
+      <div class="card">
+        <div class="card-header"><span class="card-title">Current Plan</span></div>
+        <div style="display:flex;align-items:center;gap:2rem;flex-wrap:wrap;">
+          <div>
+            <div style="font-size:0.68rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-bottom:0.3rem;">Package</div>
+            <div style="font-family:'Bebas Neue',sans-serif;font-size:1.5rem;">Standard</div>
+          </div>
+          <div>
+            <div style="font-size:0.68rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-bottom:0.3rem;">Monthly Fee</div>
+            <div style="font-family:'Bebas Neue',sans-serif;font-size:1.5rem;color:var(--yellow);">R200</div>
+          </div>
+          <div>
+            <div style="font-size:0.68rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-bottom:0.3rem;">Setup Fee</div>
+            <div style="font-family:'Bebas Neue',sans-serif;font-size:1.5rem;color:var(--green);">R0 (Waived)</div>
+          </div>
+          <div>
+            <div style="font-size:0.68rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-bottom:0.3rem;">Next Payment</div>
+            <div style="font-family:'Bebas Neue',sans-serif;font-size:1.5rem;">1 June 2025</div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header"><span class="card-title">Payment Details</span></div>
+        <div style="display:flex;flex-direction:column;gap:0.8rem;">
+          <div style="background:var(--gray3);padding:1rem;border-left:3px solid var(--yellow);">
+            <div style="font-size:0.7rem;color:var(--muted);margin-bottom:0.3rem;">Pay via EFT to:</div>
+            <div style="font-size:0.88rem;font-weight:600;">Primelane Digital</div>
+            <div style="font-size:0.82rem;color:var(--muted);">Contact Likho for banking details: 069 569 6742</div>
+          </div>
+          <div style="background:var(--gray3);padding:1rem;border-left:3px solid var(--yellow);">
+            <div style="font-size:0.7rem;color:var(--muted);margin-bottom:0.3rem;">Payment reference:</div>
+            <div style="font-size:0.88rem;font-weight:600;color:var(--yellow);">POV-MONTHLY</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- end main -->
+</div><!-- end portal -->
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script>
+  // ── LOGIN ──
+  const USERS = { 'pov': 'pov2025', 'admin': 'primelane123' };
+
+  function doLogin() {
+    const user = document.getElementById('loginUser').value.trim().toLowerCase();
+    const pass = document.getElementById('loginPass').value.trim();
+    const err = document.getElementById('loginError');
+    if (USERS[user] && USERS[user] === pass) {
+      document.getElementById('loginScreen').style.display = 'none';
+      document.getElementById('portal').style.display = 'block';
+      err.style.display = 'none';
+    } else {
+      err.style.display = 'block';
+      document.getElementById('loginPass').value = '';
+    }
+  }
+
+  function doLogout() {
+    document.getElementById('portal').style.display = 'none';
+    document.getElementById('loginScreen').style.display = 'flex';
+    document.getElementById('loginUser').value = '';
+    document.getElementById('loginPass').value = '';
+  }
+
+  // ── TABS ──
+  function showTab(tab, navEl) {
+    document.querySelectorAll('.tab-page').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+    document.getElementById('tab-' + tab).classList.add('active');
+    if (navEl) navEl.classList.add('active');
+    else {
+      document.querySelectorAll('.nav-item').forEach(n => {
+        if (n.getAttribute('onclick') && n.getAttribute('onclick').includes("'" + tab + "'")) n.classList.add('active');
+      });
+    }
+  }
+
+  // ── TOAST ──
+  function showToast(msg) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 3000);
+  }
+
+  // ── ACTIONS ──
+  function sendRequest(type) {
+    const msg = encodeURIComponent('Hi Primelane Digital! POV is requesting an update: ' + type + '. Please apply the changes. Thank you.');
+    window.open('https://wa.me/27695696742?text=' + msg, '_blank');
+    showToast('Request sent to Primelane Digital via WhatsApp!');
+  }
+
+  function editPrice(btn, product) {
+    const row = btn.closest('.product-row');
+    const priceEl = row.querySelector('.product-row-price');
+    const current = priceEl.textContent;
+    const newPrice = prompt('Update price for ' + product + ':\nCurrent price: ' + current + '\n\nEnter new price (e.g. R300):', current);
+    if (newPrice && newPrice !== current) {
+      priceEl.textContent = newPrice;
+      const msg = encodeURIComponent('Hi Primelane Digital! POV wants to update the price of ' + product + ' from ' + current + ' to ' + newPrice + ' on the website. Please update. Thank you.');
+      window.open('https://wa.me/27695696742?text=' + msg, '_blank');
+      showToast('Price update request sent!');
+    }
+  }
+
+  function submitChangeRequest() {
+    const type = document.getElementById('changeType').value;
+    const desc = document.getElementById('changeDesc').value;
+    const priority = document.getElementById('changePriority').value;
+    if (!desc.trim()) { alert('Please describe the change you want.'); return; }
+    const msg = encodeURIComponent('Hi Primelane Digital!\n\nPOV Change Request:\nType: ' + type + '\nPriority: ' + priority + '\nDetails: ' + desc + '\n\nPlease confirm receipt. Thank you.');
+    window.open('https://wa.me/27695696742?text=' + msg, '_blank');
+    document.getElementById('changeDesc').value = '';
+    showToast('Change request sent to Primelane Digital!');
+  }
+
+  // ── NEXT PAYMENT (always the 28th) ──
+  function updateNextPayment() {
+    const el = document.getElementById('nextPayDate');
+    const sub = document.getElementById('nextPaySub');
+    if (!el || !sub) return;
+    const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    const today = new Date();
+    today.setHours(0,0,0,0);
+    const target = new Date(today.getFullYear(), today.getMonth(), 28);
+    if (today > target) target.setMonth(target.getMonth() + 1);
+    el.textContent = '28 ' + months[target.getMonth()];
+    const days = Math.round((target - today) / 86400000);
+    sub.textContent = days === 0 ? 'Due today' : days === 1 ? 'Due tomorrow' : 'Due in ' + days + ' days';
+  }
+  updateNextPayment();
+</script>
+</body>
+</html>
