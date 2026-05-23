@@ -92,7 +92,7 @@
     .colour-btn{padding:0.22rem 0.65rem;font-size:0.7rem;font-weight:600;border:1.5px solid rgba(255,255,255,0.15);background:transparent;color:var(--white);cursor:pointer;transition:all 0.2s;font-family:'DM Sans',sans-serif;}
     .colour-btn.selected,.colour-btn:hover{border-color:#FFD600;color:#FFD600;}
     .size-options{display:flex;gap:0.35rem;flex-wrap:wrap;margin-bottom:0.7rem;}
-    .size-btn{width:34px;height:34px;font-size:0.7rem;font-weight:700;border:1.5px solid rgba(255,255,255,0.15);background:transparent;color:var(--white);cursor:pointer;transition:all 0.2s;font-family:'DM Sans',sans-serif;display:flex;align-items:center;justify-content:center;}
+    .size-btn{min-width:34px;height:34px;padding:0 0.5rem;font-size:0.7rem;font-weight:700;border:1.5px solid rgba(255,255,255,0.15);background:transparent;color:var(--white);cursor:pointer;transition:all 0.2s;font-family:'DM Sans',sans-serif;display:inline-flex;align-items:center;justify-content:center;white-space:nowrap;line-height:1;}
     .size-btn.selected,.size-btn:hover{border-color:#FFD600;color:#FFD600;}
     .slider-bottom{display:flex;justify-content:space-between;align-items:center;}
     .slider-price{font-family:'Bebas Neue',sans-serif;font-size:1.4rem;color:#FFD600;}
@@ -299,7 +299,7 @@
       <div class="product-info">
         <div class="product-cat">Tops</div>
         <div class="product-name">Urban Bloomed Sweater</div>
-        <div class="product-sizes">S · M · L · XL · XXL · XXXL · XXXXXL</div>
+        <div class="size-options"><button class="size-btn" onclick="sizePick(null,this)">S</button><button class="size-btn" onclick="sizePick(null,this)">M</button><button class="size-btn" onclick="sizePick(null,this)">L</button><button class="size-btn" onclick="sizePick(null,this)">XL</button><button class="size-btn" onclick="sizePick(null,this)">XXL</button><button class="size-btn" onclick="sizePick(null,this)">XXXL</button><button class="size-btn" onclick="sizePick(null,this)">XXXXXL</button></div>
         <div class="product-bottom"><div class="product-price">R350</div><button class="buy-btn" onclick="openModal('Urban Bloomed Sweater','R350','')">Order Now</button></div>
       </div>
     </div><div class="product-card" data-cat="tops">
@@ -307,7 +307,7 @@
       <div class="product-info">
         <div class="product-cat">Tops</div>
         <div class="product-name">Classic Hoodie</div>
-        <div class="product-sizes">S · M · L · XL · XXL · XXXL · XXXXXL</div>
+        <div class="size-options"><button class="size-btn" onclick="sizePick(null,this)">S</button><button class="size-btn" onclick="sizePick(null,this)">M</button><button class="size-btn" onclick="sizePick(null,this)">L</button><button class="size-btn" onclick="sizePick(null,this)">XL</button><button class="size-btn" onclick="sizePick(null,this)">XXL</button><button class="size-btn" onclick="sizePick(null,this)">XXXL</button><button class="size-btn" onclick="sizePick(null,this)">XXXXXL</button></div>
         <div class="product-bottom"><div class="product-price">R350</div><button class="buy-btn" onclick="openModal('Classic Hoodie','R350','')">Order Now</button></div>
       </div>
     </div><div class="slider-card" id="statement-hoodie" data-cat="tops">
@@ -335,7 +335,7 @@
       <div class="product-info">
         <div class="product-cat">Tops</div>
         <div class="product-name">Meta Piece</div>
-        <div class="product-sizes">S · M · L · XL · XXL · XXXL · XXXXXL</div>
+        <div class="size-options"><button class="size-btn" onclick="sizePick(null,this)">S</button><button class="size-btn" onclick="sizePick(null,this)">M</button><button class="size-btn" onclick="sizePick(null,this)">L</button><button class="size-btn" onclick="sizePick(null,this)">XL</button><button class="size-btn" onclick="sizePick(null,this)">XXL</button><button class="size-btn" onclick="sizePick(null,this)">XXXL</button><button class="size-btn" onclick="sizePick(null,this)">XXXXXL</button></div>
         <div class="product-bottom"><div class="product-price">R450</div><button class="buy-btn" onclick="openModal('Meta Piece','R450','')">Order Now</button></div>
       </div>
     </div><div class="slider-card" id="pov-cap" data-cat="accessories">
@@ -568,7 +568,9 @@
   }
 
   function sizePick(cardId, btn) {
-    document.querySelectorAll('#' + cardId + ' .size-btn').forEach(b => b.classList.remove('selected'));
+    const scope = cardId ? document.getElementById(cardId) : btn.closest('.product-card,.slider-card');
+    if (!scope) return;
+    scope.querySelectorAll('.size-btn').forEach(b => b.classList.remove('selected'));
     btn.classList.add('selected');
   }
 
